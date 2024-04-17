@@ -1,17 +1,11 @@
-body{background-color: grey;}
+body{background-color: grey;
+  font-family: 'Courier New', Courier, monospace;
+  text-align: center;}
+
+  #board {
+    background-color: skyblue;
+
+  }
 
 
-h1{margin:0;
-left: 45%;
-font-family: 'Courier New', Courier, monospace;
-position: relative;
-}
-
-.game-box{height: 800px;
-width: 100px;
-background-color: rgba(33, 204, 33, 0.733);
-margin: auto;
-width: 50%;
-border: 3px solid green;
-padding: 10px}
 
