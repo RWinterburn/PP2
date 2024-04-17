@@ -3,7 +3,7 @@ body{background-color: grey;
   text-align: center;}
 
   #board {
-    background-color: skyblue;
+    background-image: url("assets/imgs/background.png")
 
   }
 
