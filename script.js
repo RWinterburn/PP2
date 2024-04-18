@@ -9,6 +9,7 @@ let spaceWidth = 34;
 let spaceHeight = 24;
 let spaceX = boardWidth/8;
 let spaceY = boardHeight/2;
+let spaceImg;
 
 let space = {
   x : spaceX,
@@ -28,4 +29,10 @@ window.onload = function(){
 //spaceship
 context.fillStyle = "red";
 context.fillRect(space.x, space.y, space.width, space.height)
+
+//load images
+spaceImg = new Image();
+spaceImg.src = "./assets/imgs/spaceShip.png";
+spaceImg.onload = function(){
+context.drawImage(spaceImg, space.x, space.y, space.width, space.height);}
 }
