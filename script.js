@@ -18,6 +18,7 @@ let velocityX = -2; //pipe moving left speed
 let velocityY = 0; // spaceship up down
 let gravity = 0.4;
 
+let gameOver = false;
 //spaceship
 let spaceWidth = 34;
 let spaceHeight = 24;
@@ -62,6 +63,9 @@ document.addEventListener("keydown", moveShip)
 
 function update(){
   requestAnimationFrame(update);
+  if (gameOver){
+    return;
+  }
   context.clearRect(0, 0, board.width, board.height);
 
   //spaceship
@@ -73,12 +77,19 @@ function update(){
   for (let i = 0; i <pipeArray.length; i++){
     let pipe = pipeArray[i];
     pipe.x += velocityX;
-    context.drawImage(pipe.img, pipe.x, pipe.y, pipe.width, pipe.height)
+    context.drawImage(pipe.img, pipe.x, pipe.y, pipe.width, pipe.height);
+
+    if (detectCollision(space, pipe)){
+      gameOver = true;
+    }
   }
  
 }
 
 function placePipes(){
+  if (gameOver) {
+    return;
+  }
   // pipe height being made random
   let randomPipeY = pipeY - pipeHeight/4 - Math.random()*(pipeHeight/2);
   let openingSpace = board.height/4;
@@ -109,4 +120,11 @@ function moveShip(e){
   if (e.code == "Space" || e.code == "ArrowUp" || e.code =="KeyX"){
     velocityY = -6;
   }
+}
+
+function detectCollision(a, b){
+  return a.x <b.x +b.width &&
+  a.x + a.width > b.x &&
+  a.y < b.y + b.height && 
+  a.y + a.height > b.y;
 }
