@@ -73,6 +73,9 @@ function update(){
   space.y = Math.max(space.y + velocityY, 0); //apply gravity doesnt go passed canvas
   context.drawImage(spaceImg, space.x, space.y, space.width, space.height);
 
+  if (space.y > board.height){
+  gameOver = true;
+}
   //pipes
   for (let i = 0; i <pipeArray.length; i++){
     let pipe = pipeArray[i];
