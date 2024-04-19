@@ -51,6 +51,7 @@ topPipeImg.src = "./assets/imgs/bottompipemod.png";
 bottomPipeImg = new Image();
 bottomPipeImg.src = "./assets/imgs/bottompipemod.png"
 requestAnimationFrame(update);
+setInterval(placePipes, 1500); //setting timing for pipes
 }
 
 function update(){
@@ -60,4 +61,23 @@ function update(){
   //spaceship
   context.drawImage(spaceImg, space.x, space.y, space.width, space.height)
 
+  //pipes
+  for (let i = 0; i <pipeArray.length; i++){
+    let pipe = pipeArray[i];
+    context.drawImage(pipe.img, pipe.x, pipe.y, pipe.width, pipe.height)
+  }
+ 
+}
+
+function placePipes(){
+
+  let topPipe = {
+    img : topPipeImg,
+    x : pipeX,
+    y: pipeY,
+    width : pipeWidth,
+    height : pipeHeight,
+    passed : false // to see if space ship passed pipe
+  }
+  pipeArray.push(topPipe); //adds new pipe to array
 }
