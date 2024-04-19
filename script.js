@@ -49,7 +49,7 @@ spaceImg.onload = function(){
 context.drawImage(spaceImg, space.x, space.y, space.width, space.height);}
 
 topPipeImg = new Image();
-topPipeImg.src = "./assets/imgs/bottompipemod.png";
+topPipeImg.src = "./assets/imgs/toppipemod.png";
 
 bottomPipeImg = new Image();
 bottomPipeImg.src = "./assets/imgs/bottompipemod.png"
@@ -74,7 +74,9 @@ function update(){
 }
 
 function placePipes(){
-  let randomPipeY = pipeY - pipeHeight/4;
+  // pipe height being made random
+  let randomPipeY = pipeY - pipeHeight/4 - Math.random()*(pipeHeight/2);
+  let openingSpace = board.height/4;
 
 
   let topPipe = {
@@ -86,4 +88,14 @@ function placePipes(){
     passed : false // to see if space ship passed pipe
   }
   pipeArray.push(topPipe); //adds new pipe to array
+
+  let bottomPipe = { 
+    img : bottomPipeImg,
+    x : pipeX,
+    y : randomPipeY + pipeHeight + openingSpace,
+    width : pipeWidth,
+    height : pipeHeight,
+    passed : false
+  }
+  pipeArray.push(bottomPipe)
 }
