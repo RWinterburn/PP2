@@ -13,6 +13,9 @@ let pipeY = 0;
 let topPipeImg;
 let bottomPipeImg;
 
+//physics
+let velocityX = -2; //pipe moving left speed
+
 //spaceship
 let spaceWidth = 34;
 let spaceHeight = 24;
@@ -64,6 +67,7 @@ function update(){
   //pipes
   for (let i = 0; i <pipeArray.length; i++){
     let pipe = pipeArray[i];
+    pipe.x += velocityX;
     context.drawImage(pipe.img, pipe.x, pipe.y, pipe.width, pipe.height)
   }
  
