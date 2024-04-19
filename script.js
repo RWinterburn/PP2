@@ -15,6 +15,8 @@ let bottomPipeImg;
 
 //physics
 let velocityX = -2; //pipe moving left speed
+let velocityY = 0; // spaceship up down
+let gravity = 0.4;
 
 //spaceship
 let spaceWidth = 34;
@@ -55,6 +57,7 @@ bottomPipeImg = new Image();
 bottomPipeImg.src = "./assets/imgs/bottompipemod.png"
 requestAnimationFrame(update);
 setInterval(placePipes, 1500); //setting timing for pipes
+document.addEventListener("keydown", moveShip)
 }
 
 function update(){
@@ -62,7 +65,9 @@ function update(){
   context.clearRect(0, 0, board.width, board.height);
 
   //spaceship
-  context.drawImage(spaceImg, space.x, space.y, space.width, space.height)
+  velocityY += gravity
+  space.y = Math.max(space.y + velocityY, 0); //apply gravity doesnt go passed canvas
+  context.drawImage(spaceImg, space.x, space.y, space.width, space.height);
 
   //pipes
   for (let i = 0; i <pipeArray.length; i++){
@@ -98,4 +103,10 @@ function placePipes(){
     passed : false
   }
   pipeArray.push(bottomPipe)
+}
+
+function moveShip(e){
+  if (e.code == "Space" || e.code == "ArrowUp" || e.code =="KeyX"){
+    velocityY = -6;
+  }
 }
