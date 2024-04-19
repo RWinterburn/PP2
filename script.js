@@ -74,11 +74,13 @@ function update(){
 }
 
 function placePipes(){
+  let randomPipeY = pipeY - pipeHeight/4;
+
 
   let topPipe = {
     img : topPipeImg,
     x : pipeX,
-    y: pipeY,
+    y: randomPipeY,
     width : pipeWidth,
     height : pipeHeight,
     passed : false // to see if space ship passed pipe
