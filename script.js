@@ -19,6 +19,7 @@ let velocityY = 0; // spaceship up down
 let gravity = 0.4;
 
 let gameOver = false;
+let score = 0;
 //spaceship
 let spaceWidth = 34;
 let spaceHeight = 24;
@@ -82,9 +83,27 @@ function update(){
     pipe.x += velocityX;
     context.drawImage(pipe.img, pipe.x, pipe.y, pipe.width, pipe.height);
 
+    if (!pipe.passed && space.x > pipe.x + pipe.width){
+      score += 0.5;
+      pipe.passed = true; 
+    }
+
     if (detectCollision(space, pipe)){
       gameOver = true;
     }
+  }
+//clear pipes 
+
+while(pipeArray.length > 0 && pipeArray[0].x < -pipeWidth){
+  pipeArray.shift(); //removes first pipe from array
+}
+  //score
+  context.fillStyle = "white";
+  context.font = "45px sans-serif"
+  context.fillText(score, 5 , 45);
+
+  if (gameOver){
+    context.fillText("game over", 5, 90)
   }
  
 }
@@ -122,6 +141,13 @@ function placePipes(){
 function moveShip(e){
   if (e.code == "Space" || e.code == "ArrowUp" || e.code =="KeyX"){
     velocityY = -6;
+
+    if(gameOver){
+      space.y = space.y;
+      pipeArray = [];
+      score = 0;
+      gameOver = false
+    }
   }
 }
 
