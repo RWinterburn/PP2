@@ -48,6 +48,8 @@ context.drawImage(spaceImg, space.x, space.y, space.width, space.height);}
 topPipeImg = new Image();
 topPipeImg.src = "./assets/imgs/bottompipemod.png";
 
+bottomPipeImg = new Image();
+bottomPipeImg.src = "./assets/imgs/bottompipemod.png"
 requestAnimationFrame(update);
 }
 
